@@ -6,7 +6,7 @@
 /*   By: iqattami <iqattami@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 09:49:08 by iqattami          #+#    #+#             */
-/*   Updated: 2024/03/26 10:31:43 by iqattami         ###   ########.fr       */
+/*   Updated: 2024/03/27 10:10:58 by iqattami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 #include "libft/libft.h"
 
-typedef struct s_liste
+typedef struct t_list
 {
     int data;
     int index;
@@ -43,9 +43,11 @@ int     max_Value(s_liste **stack);
 int     min_Value(s_liste **stack);
 // void    index(s_liste **stack);
 void swap_3(s_liste **stack);
-**char ft_check(char *av);
-*s_liste ft_check2(char ** split);
+char **ft_check(char *argv);
+s_liste *ft_check2(char **split);
 s_liste *liste(int *tab, int len);
+int check_invalid(char *str);
+int duplicate(int *tab, int len);
 
 
 #endif
