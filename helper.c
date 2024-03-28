@@ -6,7 +6,7 @@
 /*   By: iqattami <iqattami@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:33:47 by iqattami          #+#    #+#             */
-/*   Updated: 2024/03/27 10:00:56 by iqattami         ###   ########.fr       */
+/*   Updated: 2024/03/28 11:07:53 by iqattami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,6 @@ int check_invalid(char *str)
     }
     return (1);
 }
-
-#include "push_swap.h"
-#include "./libft/libft.h" // Include the necessary header file for your libft functions
 
 char **ft_check(char *argv)
 {
