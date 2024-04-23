@@ -24,7 +24,7 @@ int	swap(s_liste **stack)
 	head = *stack;
 	next_head = head->next;
 	if (!head && !next_head)
-		return ;
+		return (-1);
 	tmp_val = head->data;
 	tmp_index = head->index;
 	head->data = next_head->data;
@@ -51,7 +51,7 @@ int	sb(s_liste **stack)
 }
 int	ss(s_liste **stacka, s_liste **stackb)
 {
-	if ((ft_lstsize(*stacka) < 2) || (ft_lstsize(*stackb) < 2))
+	if ((ft_lstsize(stacka) < 2) || (ft_lstsize(stackb) < 2))
 		return (-1);
 	swap(stacka);
 	swap(stackb);

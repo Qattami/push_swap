@@ -17,10 +17,10 @@ int	r_rotate(s_liste **stack)
 	s_liste	*head;
 	s_liste	*last;
 
-	if (ft_lstsize(*stack) < 2)
+	if (ft_lstsize(stack) < 2)
 		return (-1);
 	head = *stack;
-	last = ft_lstlast(head);
+	last = ft_lstlast(&head);
 	while (head)
 	{
 		if (head->next->next == NULL)
@@ -50,7 +50,7 @@ int	rrb(s_liste **stackB)
 }
 int	rrr(s_liste **stackA, s_liste **stackB)
 {
-	if (ft_lstsize(*stackA) < 2 || ft_lstsize(stackA) < 2)
+	if (ft_lstsize(stackA) < 2 || ft_lstsize(stackA) < 2)
 		return (-1);
 	r_rotate(stackA);
 	r_rotate(stackB);

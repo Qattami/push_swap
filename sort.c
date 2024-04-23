@@ -12,66 +12,22 @@
 
 #include "push_swap.h"
 
-int max_Value(s_liste **stack)
-{
-    s_liste *head;
-    int max;
-
-    head = *stack;
-    max = head->data;
-    while(head)
-    {
-        if(max < head->data)
-            max = head->data;
-        head = head->next;
-    }
-    return (max);
-}
-int min_Value(s_liste **stack)
-{
-    s_liste *head;
-    int min;
-
-    head = *stack;
-    min = head->data;
-    while(head)
-    {
-        if(min > head->data)
-            min = head->data;
-        head = head->next;
-    }
-    return (min);
-}
-// void index(s_liste **stack)
-// {
-//     s_liste *head;
-//     int     i;
-
-//     i = 0;
-//     head = *stack;
-//     while (head)
-//     {
-//         head->index = i++;
-//         head  = head->next;
-//     }
-// }
-void swap_3(s_liste **stack)
+void sort_3(s_liste **stack)
 {
     s_liste *head;
     int max;
     int min;
 
-    max = max_Value(stack);
-    min = min_Value(stack);
+    max = get_max(stack);
+    min = get_min(stack);
     head = *stack;
-    // index(stack);
-                  if(head->data == max)
+    if(head->data == max)
         {
             ra(stack);
             if(head->data != min)
                 rra(stack);
         }
-    else if ( head->next->data == max)
+    else if (head->next->data == max)
     {
         if(head->data != min)
             rra(stack);
@@ -83,4 +39,44 @@ void swap_3(s_liste **stack)
     }
     else if (head->next->next->data == max && head->next->data == min)
         sa(stack);
+}
+
+void	sort_4(s_liste **stackA, s_liste **stackB)
+{
+	s_liste	*min;
+	int		i;
+
+	min = *stackA;
+	i = 0;
+	while ((min->data != get_min(stackA)) && min->next != NULL)
+	{
+		min = min->next;
+		i++;
+	}
+	while (i-- > 0)
+		ra(stackA);
+	write (1, "worked\n", 7);
+	pa(stackA, stackB);
+	write (1, "worked\n", 7);
+	sort_3(stackA);
+	pb(stackA, stackB);
+}
+
+void	sort_5(s_liste **stackA, s_liste **stackB)
+{
+	s_liste	*min;
+	int		i;
+
+	min = *stackA;
+	i = 0;
+	while ((min->data != get_min(stackA)) && min->next != NULL)
+	{
+		min = min->next;
+		i++;
+	}
+	while (i-- > 0)
+		ra(stackA);
+	pa(stackA, stackB);
+	sort_4(stackA, stackB);
+	pb(stackA, stackB);
 }

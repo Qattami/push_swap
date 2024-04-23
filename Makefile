@@ -11,22 +11,19 @@
 # **************************************************************************** #
 
 
-NAME = push_swap.a
+NAME = push_swap
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3
 
 SRCS = push_swap.c helper.c sort.c push.c \
-       rotate.c rrotate.c swap.c
+       rotate.c rrotate.c swap.c join.c helper0.c helper1.c helper2.c split.c 
 
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	ar rc $(NAME) $(OBJS)
-
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 clean:
 	rm -f $(OBJS)

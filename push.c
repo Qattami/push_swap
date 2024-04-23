@@ -22,22 +22,22 @@ int	push(s_liste **stackS, s_liste **stackD)
 		return (-1);
 	headS = *stackS;
 	headD = *stackD;
-	tmp = headS;
-	headS = headS->next;
-	*stackS = headS;
-	if (!headD)
+	tmp = headS->next;
+	
+	if (!stackD)
 	{
-		headD = tmp;
+		headD = headS;
 		headD->next = NULL;
-		*stackD = headD;
 	}
 	else
 	{
-		tmp->next = headD;
-		*stackD = tmp;
+		headS->next = *stackD;
+		*stackD = headS;
 	}
+	*stackS = tmp;
 	return (0);
 }
+
 int	pa(s_liste **stackA, s_liste **stackB)
 {
 	if (push(stackA, stackB) == -1)
@@ -45,6 +45,7 @@ int	pa(s_liste **stackA, s_liste **stackB)
 	ft_putstr_fd("pa", 1);
 	return (0);
 }
+
 int	pb(s_liste **stackA, s_liste **stackB)
 {
 	if (push(stackB, stackA) == -1)

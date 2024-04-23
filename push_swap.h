@@ -13,10 +13,13 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+#include <stddef.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <string.h>
 
-#include "libft/libft.h"
-
-typedef struct t_list
+typedef struct s_liste
 {
     int data;
     int index;
@@ -39,15 +42,29 @@ int	    r_rotate(s_liste **stack);
 int	    rra(s_liste **stackA);
 int	    rrb(s_liste **stackB);
 int	    rrr(s_liste **stackA, s_liste **stackB);
-int     max_Value(s_liste **stack);
-int     min_Value(s_liste **stack);
-// void    index(s_liste **stack);
-void swap_3(s_liste **stack);
+int     get_max(s_liste **stack);
+int     get_min(s_liste **stack);
+void    ft_index(s_liste **stack);
+void sort_3(s_liste **stack);
 char **ft_check(char *argv);
 s_liste *ft_check2(char **split);
 s_liste *liste(int *tab, int len);
 int check_invalid(char *str);
 int duplicate(int *tab, int len);
+char	*ft_strdup(const char *s);
+void	sort_5(s_liste **stackA, s_liste **stackB);
+void	sort_4(s_liste **stackA, s_liste **stackB);
+char	**ft_split(char const *str, char charset);
+char	*ft_strjoin(char *s1, char *s2);
+int	ft_strlen(const char *s);
+void	ft_putstr_fd(char *s, int fd);
+int	ft_atoi(char *str);
+s_liste	*ft_lstnew(int content);
+void	ft_lstadd_front(s_liste **lst, s_liste *new);
+int	ft_lstsize(s_liste **lst);
+s_liste	*ft_lstlast(s_liste **lst);
+void	ft_putendl_fd(char *s, int fd);
+
 
 
 #endif

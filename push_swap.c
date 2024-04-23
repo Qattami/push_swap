@@ -12,18 +12,24 @@
 
 #include "push_swap.h"
 
-int main(int argc , char **argv)
+int main()
 {
+    // char **split;
+    s_liste *head;  
+    s_liste *head2;
+    // if(argc > 2)
+    // {
+        // split = ft_check(argv[1]);
+        // head = ft_check2(split);
+        head = ft_lstnew(1);
+        ft_lstadd_front(&head, ft_lstnew(3));
+        ft_lstadd_front(&head, ft_lstnew(2));
+        ft_lstadd_front(&head, ft_lstnew(4));
+        // ft_lstadd_back(&head, ft_lstnew(&a[4]));
+
+        sort_4(&head, &head2);
     
-    char **split;
-    s_liste *head;    
-    if(argc > 2)
-    {
-        split = ft_check(argv[1]);
-        head = ft_check2(split);
-        swap_3(&head);
-    }
+    
+    // }
     return 0;
 }
-
-

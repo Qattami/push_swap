@@ -58,6 +58,7 @@ char **ft_check(char *argv)
     if (!split)
     {
         ft_putstr_fd("error", 2);
+        free(split);
         return NULL;
     }
 
@@ -83,7 +84,6 @@ s_liste *ft_check2(char **split)
 
     if (!tab)
         return NULL;
-
     s_liste *head = NULL;
 
     while (split[i])
@@ -91,9 +91,8 @@ s_liste *ft_check2(char **split)
         tab[i] = ft_atoi(split[i]);
         i++;
     }
-
-    free(split);
-
+    
+    free (split);
     if (duplicate(tab, i))
     {
         ft_putstr_fd("error", 2);
@@ -119,7 +118,7 @@ s_liste *liste(int *tab, int len)
         if (new == NULL)
             return NULL;
 
-        ft_lstadd_back(&head, new);
+        ft_lstadd_front(&head, new);
         i++;
     }
     return head;
