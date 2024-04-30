@@ -16,7 +16,7 @@ int duplicate(int *tab, int len)
 {
     int i = 0;
     int j;    
-    while (i < len)
+    while (i < (len - 1))
     {
         j = i + 1;
         while (j <= len)
@@ -29,97 +29,53 @@ int duplicate(int *tab, int len)
     return 0;
 }
 
-int check_invalid(char *str)
+int check_digits(char *str)
 {
-    while(*str)
-    {
-        if(*str > '9' || *str < '0')
-            return (0);
-        str++;
-    }
-    return (1);
+   int i;
+	
+	i = 0;
+	while (str[i] && ((str[i] >= '0' && str[i] <= '9') || str[i] == ' ' || (str[i] == '+' || str[i] == '-')))
+	{
+		if (str[i] == '+' || str[i] == '-')
+		{
+			if ((i > 0 && str[i - 1] != ' ') || (str[i + 1] == '\0' || str[i + 1] == ' '))
+				return (1);
+		}
+		if (str[i + 1] == '\0')
+			return 0;
+		i++;
+	}
+	return(1);
 }
 
-char **ft_check(char *argv)
+long	atoi_check(long result)
 {
-    int i = 1;
-    char *join = ft_strdup(""); // Initialize join properly
-    char **split;
-
-    while (argv[i])
-    {
-        join = ft_strjoin(join, &argv[i]); // Pass the address of argv[i]
-        i++;
-    }
-
-    split = ft_split(join, ' ');
-    free(join);
-
-    if (!split)
-    {
-        ft_putstr_fd("error", 2);
-        free(split);
-        return NULL;
-    }
-
-    i = 0;
-    while (split[i])
-    {
-        if (!check_invalid(split[i]))
-        {
-            ft_putstr_fd("error", 2);
-            free(split);
-            return NULL;
-        }
-        i++;
-    }
-
-    return split;
+	if (result > INT_MAX || result < INT_MIN)
+		return (1);
+	return (0);
 }
 
-s_liste *ft_check2(char **split)
+int	*sort_table(int *tab, int len)
 {
-    int i = 0;
-    int *tab = malloc(sizeof(int) * (ft_strlen(*split) + 1)); // Allocate memory for tab
+	int	i;
+	int	j;
+	int	tmp;
 
-    if (!tab)
-        return NULL;
-    s_liste *head = NULL;
-
-    while (split[i])
-    {
-        tab[i] = ft_atoi(split[i]);
-        i++;
-    }
-    
-    free (split);
-    if (duplicate(tab, i))
-    {
-        ft_putstr_fd("error", 2);
-        return NULL;
-    }
-
-    head = liste(tab, i);
-    free(tab); // Free the allocated memory for tab
-    return head;
-}
-
-s_liste *liste(int *tab, int len)
-{
-    int i;
-    s_liste *head;
-    s_liste *new;
-
-    head = NULL; // Initialize head to NULL
-    i = 0;
-    while (len > i)
-    {
-        new = ft_lstnew(&tab[i]); // Remove the s_liste * declaration from here
-        if (new == NULL)
-            return NULL;
-
-        ft_lstadd_front(&head, new);
-        i++;
-    }
-    return head;
+	i = 0;
+	while (i < (len - 1))
+	{
+		j = i + 1;
+		while (j < len)
+		{
+			if (tab[i] > tab[j])
+			{
+				tmp = tab[i];
+				tab[i] = tab[j];
+				tab[j] = tmp;
+			}
+			j++;
+		}
+		i++;
+	}
+	return (tab);
 }

@@ -38,7 +38,7 @@ int	sa(s_liste **stack)
 {
 	if (swap(stack) == -1)
 		return (-1);
-	ft_putendl_fd("sa", 1);
+	ft_putstr_fd("sa", 1);
 	return (0);
 }
 
@@ -46,7 +46,7 @@ int	sb(s_liste **stack)
 {
 	if (swap(stack) == -1)
 		return (-1);
-	ft_putendl_fd("sb", 1);
+	ft_putstr_fd("sb", 1);
 	return (0);
 }
 int	ss(s_liste **stacka, s_liste **stackb)

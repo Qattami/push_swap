@@ -44,12 +44,10 @@ int	    rrb(s_liste **stackB);
 int	    rrr(s_liste **stackA, s_liste **stackB);
 int     get_max(s_liste **stack);
 int     get_min(s_liste **stack);
-void    ft_index(s_liste **stack);
+void ft_index(s_liste **stack, int *tab , int len);
 void sort_3(s_liste **stack);
-char **ft_check(char *argv);
-s_liste *ft_check2(char **split);
 s_liste *liste(int *tab, int len);
-int check_invalid(char *str);
+int check_digits(char *str);
 int duplicate(int *tab, int len);
 char	*ft_strdup(const char *s);
 void	sort_5(s_liste **stackA, s_liste **stackB);
@@ -60,10 +58,14 @@ int	ft_strlen(const char *s);
 void	ft_putstr_fd(char *s, int fd);
 int	ft_atoi(char *str);
 s_liste	*ft_lstnew(int content);
-void	ft_lstadd_front(s_liste **lst, s_liste *new);
+void	ft_lstadd_back(s_liste **lst, s_liste *new);
 int	ft_lstsize(s_liste **lst);
 s_liste	*ft_lstlast(s_liste **lst);
 void	ft_putendl_fd(char *s, int fd);
+void	free_stack(s_liste **stack);
+long	atoi_check(long result);
+int	*sort_table(int *tab, int len);
+int ft_sort_helper(s_liste ** stack_a, char *join);
 
 
 

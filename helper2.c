@@ -24,13 +24,21 @@ s_liste	*ft_lstnew(int content)
 	return (node);
 }
 
-void	ft_lstadd_front(s_liste **lst, s_liste *new)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	if (!lst || !new)
+	t_list	*tmp;
+
+	if (*lst == NULL)
+	{
+		*lst = new;
 		return ;
-	new->next = *lst;
-	*lst = new;
+	}
+	tmp = *lst;
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+	tmp->next = new;
 }
+
 int	ft_lstsize(s_liste **lst)
 {
 	int	i;

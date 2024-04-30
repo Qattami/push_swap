@@ -19,11 +19,11 @@ int is_sorted(s_liste **stack_a)
     tmp = *stack_a;
     while(tmp)
     {
-        if( tmp->data < tmp->next->data )
-            return (0);
+        if( tmp->data > tmp->next->data )
+            return (1);
         tmp = tmp->next;
     }
-    return (1);
+    return (0);
 }
 
 int get_max(s_liste **stack)
@@ -56,17 +56,33 @@ int get_min(s_liste **stack)
     }
     return (min);
 }
-void ft_index(s_liste **stack)
+void ft_index(s_liste **stack, int *tab , int len)
 {
-    s_liste *head;
-    int     i;
+    t_liste	*tmp;
+	int		i;
 
-    i = 0;
-    head = *stack;
-    while (head)
-    {
-        head->index = i++;
-        head  = head->next;
-    }
+	i = 0;
+	while (i < len)
+	{
+		tmp = *stack;
+		while (tmp)
+		{
+			if(tmp->data == tab[i])
+				tmp->index = i;
+			tmp = tmp->next;
+		}
+		i++;
+	}
 }
 
+void	free_stack(s_liste **stack)
+{
+	t_liste	*temp;
+
+	while (*stack != NULL)
+	{
+		temp = *stack;
+		*stack = (*stack)->next;
+		free(temp);
+	}
+}

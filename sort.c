@@ -55,9 +55,7 @@ void	sort_4(s_liste **stackA, s_liste **stackB)
 	}
 	while (i-- > 0)
 		ra(stackA);
-	write (1, "worked\n", 7);
 	pa(stackA, stackB);
-	write (1, "worked\n", 7);
 	sort_3(stackA);
 	pb(stackA, stackB);
 }
@@ -79,4 +77,9 @@ void	sort_5(s_liste **stackA, s_liste **stackB)
 	pa(stackA, stackB);
 	sort_4(stackA, stackB);
 	pb(stackA, stackB);
+}
+
+int ft_sort_helper(s_liste ** stack_a, char *join)
+{
+	
 }

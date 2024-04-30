@@ -75,10 +75,7 @@ int	ft_atoi(char *str)
 	}
 	while (str[i] && (str[i] >= '0' && str[i] <= '9'))
 		result = result * 10 + (str[i++] - '0');
+	if (atoi_check(result * sign) || ft_strlen(result * sign) > 12)
+		return (2147483648);
 	return (result * sign);
-}
-void	ft_putendl_fd(char *s, int fd)
-{
-	ft_putstr_fd(s, fd);
-	write(fd, "\n", 1);
 }
