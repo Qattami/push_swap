@@ -1,7 +1,7 @@
 
 NAME = push_swap
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3
+CFLAGS = -Wall -Wextra -Werror 
 
 SRCS = push_swap.c helper.c sort.c push.c \
        rotate.c rrotate.c swap.c join.c helper0.c \

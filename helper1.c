@@ -17,7 +17,7 @@ int is_sorted(s_liste **stack_a)
     s_liste *tmp;
 
     tmp = *stack_a;
-    while(tmp)
+    while(tmp  && tmp->next)
     {
         if( tmp->data > tmp->next->data )
             return (1);

@@ -6,7 +6,7 @@
 /*   By: iqattami <iqattami@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 18:47:20 by iqattami          #+#    #+#             */
-/*   Updated: 2024/04/30 20:15:10 by iqattami         ###   ########.fr       */
+/*   Updated: 2024/05/01 17:21:27 by iqattami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,37 @@ s_liste	*ft_lstnew(int content)
 	return (node);
 }
 
+// void	ft_lstadd_back(s_liste **lst, s_liste *new)
+// {
+// 	s_liste	*tmp;
+
+// 	if (*lst == NULL)
+// 	{
+// 		*lst = new;
+// 		return ;
+		
+// 	}
+// 	tmp = *lst;
+// 	while (tmp->next != NULL)
+// 	{
+// 		tmp = tmp->next;
+// 	}
+// 	tmp->next = new;
+// }
 void	ft_lstadd_back(s_liste **lst, s_liste *new)
 {
 	s_liste	*tmp;
 
-	if (*lst == NULL)
-	{
-		*lst = new;
+	if (lst == NULL || new == NULL)
 		return ;
-	}
 	tmp = *lst;
-	while (tmp->next != NULL)
-		tmp = tmp->next;
-	tmp->next = new;
+	if (tmp)
+	{
+		tmp = ft_lstlast(&tmp);
+		tmp->next = new;
+	}
+	else
+		*lst = new;
 }
 
 int	ft_lstsize(s_liste **lst)

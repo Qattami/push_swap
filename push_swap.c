@@ -26,8 +26,19 @@ void	fill_stack(s_liste **head, int *tab, int c)
 {
 	int i  = 0;
 	
-	while (c > i)
+	while (i < c)
+    {
 		ft_lstadd_back(head, ft_lstnew(tab[i++]));
+    }
+    if (i == 4)
+        {
+            s_liste *tmp = *head;
+            while (tmp)
+            {
+                printf("data=%d\n",tmp->data);
+                tmp = tmp->next;
+            }
+        }
 }
 
 int ft_check(s_liste **head, char *join)
@@ -47,7 +58,9 @@ int ft_check(s_liste **head, char *join)
         s++;
     }
     if(duplicate(tab, i) == 1)
+    {
         (ft_putstr_fd("error", 1), exit(1));
+    }  
 	fill_stack(head, tab, i);
 	tab = sort_table(tab, i);
 	ft_index(head, tab, i);
@@ -77,13 +90,13 @@ void sort(s_liste **stackA, s_liste **stackB)
 
 int main(int ac, char **av)
 {
-    s_liste	*stackA;
-	s_liste	*stackB;
+    s_liste	*stackA = NULL;
+	s_liste	*stackB = NULL;
     int i = 1;
     int j = 1;
     char *join;
 
-    join = "";
+    join = NULL;
     while (i < ac)
     {
         if (check_digits(av[i]) == 1 || check_spaces(av[i]) == 1)
@@ -93,7 +106,6 @@ int main(int ac, char **av)
         }
         i++;
     }    
-    system("leaks push_swap");
     while (j < ac)
         join = ft_strjoin(join, av[j++]);
     if (ft_check(&stackA, join) == 1)
