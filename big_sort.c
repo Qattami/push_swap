@@ -1,57 +1,106 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   big_sort.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: iqattami <iqattami@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/30 18:49:52 by iqattami          #+#    #+#             */
+/*   Updated: 2024/05/01 01:38:00 by iqattami         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "push_swap.h"
-int split_len(char **split)
+
+int highest_position(s_liste *head, int a)
 {
+    s_liste *tmp;
     int i;
 
+    tmp = head;
     i = 0;
-    while(split[i])
+    while(tmp)
+    {
+        if(tmp->data == a)
+            break;
         i++;
+        tmp = tmp->next;
+    }
     return (i);
 }
 
-int processing(s_liste **stackA, char *join)
+int index_position(s_liste *head, int a)
 {
-    char    **split;
-    int     *tab;
-    int     i;
-    int     s;
-    
-    s = 0;
-    split = ft_split(join, ' ');
-    i = split_len(split);
-    tab = (int *)malloc(sizeof(int) * i);   
-    while (s < i)
+    s_liste *tmp;
+    int i;
+
+    tmp = head;
+    i = 0;
+    while(tmp)
     {
-        tab[s] = ft_atoi(split[s]);
-        s++;
+        if(tmp->index < a)
+            break;
+        i++;
+        tmp = tmp->next;
     }
-    if(check_double(tab, i) == 1)
-        (ft_putstr_fd("error", 1), exit(1));
-	fill_stack(stackA, tab, i);
-	tab = sort_tab(tab, i);
-	indexing(stackA, tab, i);
-    if (check_sort(stackA) == 1)
-        return (1);
-    return(0);
+    return (i);
 }
 
-void sorting(s_liste **stackA, s_liste **stackB)
+void sort_all(s_liste **stackA, s_liste **stackB)
 {
-    if (ft_lstsize(*stackA) == 2)
-        sort_2(stackA);
-    else if (ft_lstsize(*stackA) == 3)
-        sort_3(stackA);
-    else if (ft_lstsize(*stackA) == 4)
-        sort_4(stackA, stackB);
-    else if (ft_lstsize(*stackA) == 5)
-        sort_5(stackA, stackB);
-    else if (ft_lstsize(*stackA) > 5)
-    {
-        if (ft_lstsize(*stackA) < 250)
-            Push_to_b(stackA, stackB, 15);
-        else
-            Push_to_b(stackA, stackB, 40);
-    }
+    int	highest;
+	int	position;
+
+	highest = get_max(stackB);
+	position = highest_position(*stackB, highest);
+	while (ft_lstsize(stackB) > 0)
+	{
+		if (highest == (*stackB)->data)
+		{
+			pa(stackA, stackB);
+			if (ft_lstsize(stackB) > 0)
+			{
+				highest = get_max(stackB);
+				position = highest_position(*stackB, highest);
+			}
+		}
+		else
+		{
+			if (position <= (ft_lstsize(stackB) / 2) && highest != (*stackB)->data)
+				rb(stackB);
+			else
+				rrb(stackB);
+		}
+	}
+    
 }
+
+void    push_all_B(s_liste **stackA, s_liste **stackB, int c)
+{
+    int size;
+    int i;
+
+    size = ft_lstsize(stackA);
+    i = 0;
+    while(i < size)
+    {
+        if((*stackA)->index <= i)
+        {
+            pb(stackA, stackB);
+            rb(stackB);
+            i++;
+        }
+        else if ((*stackA)->index <= (i + c))
+        {
+            pb(stackA, stackB);
+            i++;
+        }
+        else if(index_position(*stackA, (i + c)) < ft_lstsize(stackA) / 2)
+            ra(stackA);
+        else
+            rra(stackA);
+    }
+    sort_all(stackA, stackB);
+}
+
+

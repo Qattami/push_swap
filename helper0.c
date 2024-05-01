@@ -6,7 +6,7 @@
 /*   By: iqattami <iqattami@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 17:06:07 by iqattami          #+#    #+#             */
-/*   Updated: 2024/04/23 16:13:52 by iqattami         ###   ########.fr       */
+/*   Updated: 2024/05/01 00:18:54 by iqattami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,10 @@ int	ft_strlen(const char *s)
 	return (i);
 }
 
-int	ft_atoi(char *str)
+long	ft_atoi(char *str)
 {
 	int	sign;
-	int	result;
+	long	result;
 	int	i;
 
 	sign = 1;
@@ -75,7 +75,7 @@ int	ft_atoi(char *str)
 	}
 	while (str[i] && (str[i] >= '0' && str[i] <= '9'))
 		result = result * 10 + (str[i++] - '0');
-	if (atoi_check(result * sign) || ft_strlen(result * sign) > 12)
+	if (atoi_check(result * sign))
 		return (2147483648);
 	return (result * sign);
 }

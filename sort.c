@@ -79,7 +79,11 @@ void	sort_5(s_liste **stackA, s_liste **stackB)
 	pb(stackA, stackB);
 }
 
-int ft_sort_helper(s_liste ** stack_a, char *join)
+void	sort_2(s_liste **stackA)
 {
-	
+	s_liste *tmp;
+
+	tmp = *stackA;
+	if(tmp->data > tmp->next->data)
+		sa(stackA); 
 }

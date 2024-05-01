@@ -19,7 +19,7 @@ int duplicate(int *tab, int len)
     while (i < (len - 1))
     {
         j = i + 1;
-        while (j <= len)
+        while (j <= (len -1))
         {
             if (tab[i] == tab[j++])
                 return 1;
@@ -27,6 +27,22 @@ int duplicate(int *tab, int len)
         i++;
     }
     return 0;
+}
+
+int check_spaces(char *str)
+{
+    int i;
+
+	i = 0;
+	if (str[0] == '\0')
+		return (1);
+	while (str[i] && str[i] == ' ')
+	{
+		if (str[i + 1] == '\0')
+			return (1);
+		i++;
+	}
+	return (0);
 }
 
 int check_digits(char *str)

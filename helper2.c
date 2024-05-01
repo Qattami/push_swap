@@ -6,7 +6,7 @@
 /*   By: iqattami <iqattami@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 18:47:20 by iqattami          #+#    #+#             */
-/*   Updated: 2024/04/23 15:54:39 by iqattami         ###   ########.fr       */
+/*   Updated: 2024/04/30 20:15:10 by iqattami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ s_liste	*ft_lstnew(int content)
 	return (node);
 }
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	ft_lstadd_back(s_liste **lst, s_liste *new)
 {
-	t_list	*tmp;
+	s_liste	*tmp;
 
 	if (*lst == NULL)
 	{

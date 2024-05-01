@@ -11,47 +11,98 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-s_liste *ft_check(s_liste *head, char *str1, char *str2)
+
+int split_len(char **split)
 {
-    char *join;
-    char **split;
     int i;
 
     i = 0;
-    join = ft_strjoin(str1, str2);
-    split = ft_split(join, ' ');
-    free(join);
     while(split[i])
-    {  
-        if(check_digits(split[i]) == 0 )
-            {
-                write(1, "error", 1);
-                exit(1);
-            }
         i++;
+    return (i);
+}
+
+void	fill_stack(s_liste **head, int *tab, int c)
+{
+	int i  = 0;
+	
+	while (c > i)
+		ft_lstadd_back(head, ft_lstnew(tab[i++]));
+}
+
+int ft_check(s_liste **head, char *join)
+{
+    char    **split;
+    int     *tab;
+    int     i;
+    int     s;
+    
+    s = 0;
+    split = ft_split(join, ' ');
+    i = split_len(split);
+    tab = (int *)malloc(sizeof(int) * i);   
+    while (s < i)
+    {
+        tab[s] = ft_atoi(split[s]);
+        s++;
+    }
+    if(duplicate(tab, i) == 1)
+        (ft_putstr_fd("error", 1), exit(1));
+	fill_stack(head, tab, i);
+	tab = sort_table(tab, i);
+	ft_index(head, tab, i);
+    if (is_sorted(head) == 1)
+        return (1);
+    return(0);
+}
+
+void sort(s_liste **stackA, s_liste **stackB)
+{
+    if (ft_lstsize(stackA) == 2)
+        sort_2(stackA);
+    else if (ft_lstsize(stackA) == 3)
+        sort_3(stackA);
+    else if (ft_lstsize(stackA) == 4)
+        sort_4(stackA, stackB);
+    else if (ft_lstsize(stackA) == 5)
+        sort_5(stackA, stackB);
+    else if (ft_lstsize(stackA) > 5)
+    {
+        if (ft_lstsize(stackA) < 250)
+            push_all_B(stackA, stackB, 15);
+        else
+            push_all_B(stackA, stackB, 40);
     }
 }
+
 int main(int ac, char **av)
 {
-    s_liste *head;
-    if (ac == 0)
-        exit(1);
+    s_liste	*stackA;
+	s_liste	*stackB;
+    int i = 1;
+    int j = 1;
+    char *join;
+
+    join = "";
+    while (i < ac)
+    {
+        if (check_digits(av[i]) == 1 || check_spaces(av[i]) == 1)
+        {
+            ft_putstr_fd("error", 1);
+            return (1);
+        }
         i++;
-        
-
-    
-    while(split[i])
-    {
-        ft_lstadd_front(&head, ft_lstnew(ft_atoi(split[i])));
-        i++; 
-    }
-    sort_3(&head);
+    }    
     system("leaks push_swap");
-    while(ac > 0)
-    {
-        head = ft_check(av[i-1], av[i]);
-    }
+    while (j < ac)
+        join = ft_strjoin(join, av[j++]);
+    if (ft_check(&stackA, join) == 1)
+        sort(&stackA, &stackB);
+    free_stack(&stackA);
+    // if (stackB != NULL)
+	free_stack(&stackB);
 
-    
+
+
     return 0;
 }

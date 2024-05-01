@@ -18,6 +18,7 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <string.h>
+#include <limits.h>
 
 typedef struct s_liste
 {
@@ -45,9 +46,10 @@ int	    rrr(s_liste **stackA, s_liste **stackB);
 int     get_max(s_liste **stack);
 int     get_min(s_liste **stack);
 void ft_index(s_liste **stack, int *tab , int len);
+void    sort_2(s_liste **stackA);
 void sort_3(s_liste **stack);
-s_liste *liste(int *tab, int len);
 int check_digits(char *str);
+int is_sorted(s_liste **stack_a);
 int duplicate(int *tab, int len);
 char	*ft_strdup(const char *s);
 void	sort_5(s_liste **stackA, s_liste **stackB);
@@ -56,16 +58,18 @@ char	**ft_split(char const *str, char charset);
 char	*ft_strjoin(char *s1, char *s2);
 int	ft_strlen(const char *s);
 void	ft_putstr_fd(char *s, int fd);
-int	ft_atoi(char *str);
+long	ft_atoi(char *str);
 s_liste	*ft_lstnew(int content);
 void	ft_lstadd_back(s_liste **lst, s_liste *new);
 int	ft_lstsize(s_liste **lst);
 s_liste	*ft_lstlast(s_liste **lst);
-void	ft_putendl_fd(char *s, int fd);
 void	free_stack(s_liste **stack);
 long	atoi_check(long result);
 int	*sort_table(int *tab, int len);
-int ft_sort_helper(s_liste ** stack_a, char *join);
+int ft_check(s_liste **head, char *join);
+void    push_all_B(s_liste **stackA, s_liste **stackB, int c);
+void sort_all(s_liste **stackA, s_liste **stackB);
+int check_spaces(char *str);
 
 
 
